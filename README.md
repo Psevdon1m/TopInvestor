@@ -1,42 +1,23 @@
-# Advanced Sample Hardhat Project
+# TopInvestor Contract
 
-This project demonstrates an advanced Hardhat use case, integrating other tools commonly used alongside Hardhat in the ecosystem.
+**SPDX-License-Identifier: MIT**
 
-The project comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
+## Description
 
-Try running some of the following tasks:
+The TopInvestor contract is a demo contract that rewards the top investor based on their funding amount. It utilizes the Chainlink Price Aggregator interface to convert the funding amount from Ether (ETH) to USD. The contract keeps track of the funding amounts for each address and allows the contract owner to withdraw the funds. Created with referrence to Free Code Camp Solidity course.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.js
-node scripts/deploy.js
-npx eslint '**/*.js'
-npx eslint '**/*.js' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
-```
+## Features
 
-# Etherscan verification
+- Allows users to fund the contract with ETH.
+- Converts the funding amount from ETH to USD using Chainlink Price Aggregator.
+- Rewards the top investor based on the funding amount.
+- Allows the contract owner to withdraw the funds.
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
+## Usage
 
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
-
-```shell
-hardhat run --network ropsten scripts/deploy.js
-```
-
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
-
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
-```
+1. Deploy the contract to an Ethereum network.
+2. Provide the address of the Chainlink Price Aggregator as a constructor parameter during deployment.
+3. Users can fund the contract by sending ETH to the contract's `fund` function.
+4. The contract will check if the funding amount meets the minimum requirement in USD.
+5. The contract will keep track of the funding amounts for each address.
+6. The contract owner can withdraw the funds by calling the `withdraw` function.
